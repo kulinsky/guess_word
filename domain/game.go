@@ -48,7 +48,6 @@ func NewGame(gameID GameID, w *Word, attemptCount int) (*Game, error) {
 		game,
 		SetAttemptCount(attemptCount),
 		SetGuessed(strings.Join(guessed[:], "")),
-		SetWord(w),
 	); err != nil {
 		return nil, err
 	}
