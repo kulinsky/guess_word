@@ -25,14 +25,19 @@ type Game struct {
 }
 
 // NewGame фабричный метод, создает новую игру
-func NewGame(gameID GameID, w Word, attemptCount int) (*Game, error) {
+func NewGame(gameID GameID, w *Word, attemptCount int) (*Game, error) {
 	game := &Game{
 		ID:        gameID,
 		WordID:    &w.ID,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
-		Word:      &w,
 	}
+
+	// сначала нужно установить слово
+	if err := UpdateGame(game, SetWord(w)); err != nil {
+		return nil, err
+	}
+
 	guessed := make([]string, len(w.String()))
 
 	for idx, _ := range guessed {
@@ -43,6 +48,7 @@ func NewGame(gameID GameID, w Word, attemptCount int) (*Game, error) {
 		game,
 		SetAttemptCount(attemptCount),
 		SetGuessed(strings.Join(guessed[:], "")),
+		SetWord(w),
 	); err != nil {
 		return nil, err
 	}
@@ -88,6 +94,19 @@ func SetGuessed(input string) func(fields *Game) error {
 		}
 
 		initial.Guessed = input
+
+		return nil
+	}
+}
+
+func SetWord(input *Word) func(fields *Game) error {
+	return func(initial *Game) error {
+		if input == nil {
+			return ErrEmptyWord
+		}
+
+		initial.Word = input
+		initial.WordID = &input.ID
 
 		return nil
 	}

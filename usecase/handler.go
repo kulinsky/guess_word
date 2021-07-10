@@ -10,7 +10,7 @@ import (
 )
 
 type GameLogic interface {
-	StartNewGame(ctx context.Context, attemptCount int, w domain.Word) (*domain.GameID, error)
+	StartNewGame(ctx context.Context, attemptCount int, w *domain.Word) (*domain.GameID, error)
 	GetGameStat(ctx context.Context, gameID *domain.GameID) (*domain.GameStat, error)
 	Guess(ctx context.Context, gameID *domain.GameID, letter string) (bool, error)
 }

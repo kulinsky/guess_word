@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func (i interactor) StartNewGame(ctx context.Context, attemptCount int, w domain.Word) (*domain.GameID, error) {
+func (i interactor) StartNewGame(ctx context.Context, attemptCount int, w *domain.Word) (*domain.GameID, error) {
 	gameID := domain.GenerateGameID()
 
 	game, err := domain.NewGame(gameID, w, attemptCount)

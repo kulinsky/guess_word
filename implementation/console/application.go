@@ -38,7 +38,7 @@ func (cH *CommandHandler) Start(ctx context.Context, attemptCount int) {
 		log.Fatal(err.Error())
 	}
 
-	gameID, err := cH.ucHandler.StartNewGame(ctx, attemptCount, *w)
+	gameID, err := cH.ucHandler.StartNewGame(ctx, attemptCount, w)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
