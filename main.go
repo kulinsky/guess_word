@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 
 	"go.uber.org/zap"
 
@@ -13,7 +14,13 @@ import (
 
 func main() {
 	logger, _ := zap.NewProduction()
-	defer logger.Sync()
+
+	defer func(logger *zap.Logger) {
+		err := logger.Sync()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(logger)
 
 	ucHandler := usecase.HandlerConstructor{
 		Repository: repository.CreateRepository(),
