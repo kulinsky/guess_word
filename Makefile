@@ -3,10 +3,10 @@ default:
 
 .PHONY: lint
 lint:
-	golangci-lint run --fix ./.
+	golangci-lint run --fix .
 
 lint-ci:
-	golangci-lint run ./...
+	golangci-lint run .
 
 # make makemigration NAME=some_name
 .PHONY: makemigration
