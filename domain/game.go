@@ -40,7 +40,7 @@ func NewGame(gameID GameID, w *Word, attemptCount int) (*Game, error) {
 
 	guessed := make([]string, len(w.String()))
 
-	for idx, _ := range guessed {
+	for idx := range guessed {
 		guessed[idx] = "*"
 	}
 
@@ -122,16 +122,12 @@ func (g *Game) ReduceAttemptCount() error {
 }
 
 // CheckLetter метод для проверки наличая буквы в искомом слове
-func (g *Game) CheckLetter(s string) (int, error) {
-	idx := -1
-
+func (g *Game) CheckLetter(s string) (bool, error) {
 	if len(s) != 1 {
-		return idx, ErrNotLetter
+		return false, ErrNotLetter
 	}
 
-	idx = strings.Index(g.Word.String(), s)
-
-	return idx, nil
+	return strings.Contains(g.Word.String(), s), nil
 }
 
 // SetGuessedLetter метод для обновления текущего состояния слова

@@ -53,13 +53,13 @@ func (i interactor) Guess(ctx context.Context, gameID *domain.GameID, letter str
 		return false, domain.ErrGameOver
 	}
 
-	if strings.Index(game.Guessed, letter) >= 0 {
+	if strings.Contains(game.Guessed, letter) {
 		i.logger.Warn(domain.ErrAlreadyBeen.Error())
 
 		return true, nil
 	}
 
-	letterIdx, err := game.CheckLetter(letter)
+	guessed, err := game.CheckLetter(letter)
 
 	if err != nil {
 		i.logger.Error(err.Error())
@@ -67,7 +67,7 @@ func (i interactor) Guess(ctx context.Context, gameID *domain.GameID, letter str
 		return false, err
 	}
 
-	if letterIdx >= 0 {
+	if guessed {
 		if _, err := game.SetGuessedLetter(letter); err != nil {
 			return true, err
 		}
