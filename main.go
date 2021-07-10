@@ -2,8 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
-
 	"go.uber.org/zap"
 
 	repository "github.com/kulinsky/guess_word/implementation/memory.repository"
@@ -16,10 +14,7 @@ func main() {
 	logger, _ := zap.NewProduction()
 
 	defer func(logger *zap.Logger) {
-		err := logger.Sync()
-		if err != nil {
-			log.Fatal(err)
-		}
+		_ = logger.Sync()
 	}(logger)
 
 	ucHandler := usecase.HandlerConstructor{

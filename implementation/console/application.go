@@ -61,7 +61,7 @@ func (cH *CommandHandler) Start(ctx context.Context, attemptCount int) {
 		}
 
 		if !guess {
-			fmt.Println(fmt.Sprintf("Missed, mistake %d out of %d.", counter, attemptCount))
+			fmt.Printf("Missed, mistake %d out of %d.\n", counter, attemptCount)
 
 			counter++
 		} else {
