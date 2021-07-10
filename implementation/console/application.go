@@ -27,7 +27,7 @@ func NewCommandHandler(i usecase.Handler, logger *zap.Logger) CommandHandler {
 func (cH *CommandHandler) InitWords(ctx context.Context, words []string) {
 	for _, val := range words {
 		if _, err := cH.ucHandler.WordCreate(ctx, val); err != nil {
-			panic(err)
+			log.Fatal(err.Error())
 		}
 	}
 }
