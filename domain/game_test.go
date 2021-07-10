@@ -26,4 +26,11 @@ func TestNewGame(t *testing.T) {
 
 		assert.Equal(t, err, ErrEmptyWord)
 	})
+
+	t.Run("negative attempt count", func(t *testing.T) {
+
+		_, err := NewGame(gameID, &word, -1)
+
+		assert.Equal(t, err, ErrNegativeAttemptCount)
+	})
 }
