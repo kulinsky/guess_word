@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// GameStat only view-model
 type GameStat struct {
 	GameID       GameID
 	AttemptCount int
@@ -28,7 +29,6 @@ type Game struct {
 func NewGame(gameID GameID, w *Word, attemptCount int) (*Game, error) {
 	game := &Game{
 		ID:        gameID,
-		WordID:    &w.ID,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 	}
