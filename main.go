@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+
 	"go.uber.org/zap"
 
 	repository "github.com/kulinsky/guess_word/implementation/memory.repository"
-
 	"github.com/kulinsky/guess_word/infrastructure"
 	"github.com/kulinsky/guess_word/usecase"
 )
@@ -32,5 +32,20 @@ func main() {
 	words := []string{"this", "is", "modern", "scalable", "high", "performance", "application"}
 	app.InitWords(ctx, words)
 
-	app.Start(ctx)
+	app.Start(ctx) // comment this if you wont http-rest interface
+
+	// uncomment this  if you wont http-rest interface
+	//r := infrastructure.InitGinRouter()
+	//rH := server.NewRouter(ucHandler, logger)
+	//rH.SetRoutes(r)
+	//
+	//srv := http.Server{
+	//	Addr:    fmt.Sprintf(":%d", 9000),
+	//	Handler: r,
+	//}
+	//
+	//err := srv.ListenAndServe()
+	//if err != nil {
+	//	logger.Error(err.Error())
+	//}
 }
