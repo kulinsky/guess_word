@@ -9,21 +9,22 @@ import (
 
 type ConsoleApp struct {
 	AttemptCount   int
-	InitialWords   []string
 	CommandHandler console.CommandHandler
 }
 
-func NewConsoleApp(attemptCount int, words []string, uc usecase.Handler, logger *zap.Logger) ConsoleApp {
+func NewConsoleApp(attemptCount int, uc usecase.Handler, logger *zap.Logger) ConsoleApp {
 	ch := console.NewCommandHandler(uc, logger)
 
 	return ConsoleApp{
 		AttemptCount:   attemptCount,
-		InitialWords:   words,
 		CommandHandler: ch,
 	}
 }
 
 func (app *ConsoleApp) Start(ctx context.Context) {
-	app.CommandHandler.InitWords(ctx, app.InitialWords)
 	app.CommandHandler.Start(ctx, app.AttemptCount)
+}
+
+func (app *ConsoleApp) InitWords(ctx context.Context, words []string) {
+	app.CommandHandler.InitWords(ctx, words)
 }

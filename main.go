@@ -22,11 +22,15 @@ func main() {
 		Logger:     logger,
 	}.New()
 
-	words := []string{"this", "is", "modern", "scalable", "high", "performance", "application"}
 	attemptCount := 5
 
 	ctx := context.Background()
 
-	app := infrastructure.NewConsoleApp(attemptCount, words, ucHandler, logger)
+	app := infrastructure.NewConsoleApp(attemptCount, ucHandler, logger)
+
+	// we need to init words, coz we use inmemory repo
+	words := []string{"this", "is", "modern", "scalable", "high", "performance", "application"}
+	app.InitWords(ctx, words)
+
 	app.Start(ctx)
 }
