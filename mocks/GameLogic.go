@@ -16,6 +16,29 @@ type GameLogic struct {
 	mock.Mock
 }
 
+// GetGameByID provides a mock function with given fields: ctx, gameID
+func (_m *GameLogic) GetGameByID(ctx context.Context, gameID *uuid.UUID) (*domain.Game, error) {
+	ret := _m.Called(ctx, gameID)
+
+	var r0 *domain.Game
+	if rf, ok := ret.Get(0).(func(context.Context, *uuid.UUID) *domain.Game); ok {
+		r0 = rf(ctx, gameID)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*domain.Game)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *uuid.UUID) error); ok {
+		r1 = rf(ctx, gameID)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetGameStat provides a mock function with given fields: ctx, gameID
 func (_m *GameLogic) GetGameStat(ctx context.Context, gameID *uuid.UUID) (*domain.GameStat, error) {
 	ret := _m.Called(ctx, gameID)

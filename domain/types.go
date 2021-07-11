@@ -13,3 +13,8 @@ func GenerateGameID() GameID {
 func GenerateWordID() WordID {
 	return uuid.New()
 }
+
+func GameIDFromString(s string) (*GameID, error) {
+	id, err := uuid.Parse(s)
+	return &id, err
+}

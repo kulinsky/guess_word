@@ -99,3 +99,15 @@ func (i interactor) Guess(ctx context.Context, gameID *domain.GameID, letter str
 		return false, nil
 	}
 }
+
+func (i interactor) GetGameByID(ctx context.Context, gameID *domain.GameID) (*domain.Game, error) {
+	game, err := i.repository.GetGame(ctx, gameID)
+
+	if err != nil {
+		i.logger.Error(err.Error())
+
+		return nil, domain.ErrTechnical
+	}
+
+	return game, nil
+}
