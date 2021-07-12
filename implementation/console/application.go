@@ -57,7 +57,7 @@ func (cH *CommandHandler) Start(ctx context.Context, attemptCount int) {
 		guess, err := cH.ucHandler.Guess(ctx, gameID, letter)
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		if !guess {
@@ -71,7 +71,7 @@ func (cH *CommandHandler) Start(ctx context.Context, attemptCount int) {
 		stat, err := cH.ucHandler.GetGameStat(ctx, gameID)
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		fmt.Println("The word:", stat.CurrentWord)
