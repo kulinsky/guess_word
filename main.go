@@ -35,17 +35,17 @@ func main() {
 	app.Start(ctx) // comment this if you wont http-rest interface
 
 	// uncomment this  if you wont http-rest interface
-	//r := infrastructure.InitGinRouter()
-	//rH := server.NewRouter(ucHandler, logger)
-	//rH.SetRoutes(r)
+	// r := infrastructure.InitGinRouter()
+	// rH := server.NewRouter(ucHandler, logger)
+	// rH.SetRoutes(r)
 	//
-	//srv := http.Server{
+	// srv := http.Server{
 	//	Addr:    fmt.Sprintf(":%d", 9000),
 	//	Handler: r,
-	//}
+	// }
 	//
-	//err := srv.ListenAndServe()
-	//if err != nil {
-	//	logger.Error(err.Error())
-	//}
+	// err := srv.ListenAndServe()
+	// if err != nil {
+	// 	logger.Error(err.Error())
+	// }
 }
