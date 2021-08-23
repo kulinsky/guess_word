@@ -8,8 +8,8 @@ import (
 )
 
 func (rw rw) SaveWord(ctx context.Context, word *domain.Word) error {
-	courseID := fmt.Sprint("Words:", word.ID)
-	rw.store.Store(courseID, *word)
+	wordID := fmt.Sprint("Words:", word.ID)
+	rw.store.Store(wordID, *word)
 
 	return nil
 }
