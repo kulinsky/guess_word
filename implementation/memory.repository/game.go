@@ -8,8 +8,8 @@ import (
 )
 
 func (rw rw) SaveGame(ctx context.Context, game *domain.Game) error {
-	courseID := fmt.Sprint("Games:", game.ID)
-	rw.store.Store(courseID, *game)
+	gameID := fmt.Sprint("Games:", game.ID)
+	rw.store.Store(gameID, *game)
 
 	return nil
 }
